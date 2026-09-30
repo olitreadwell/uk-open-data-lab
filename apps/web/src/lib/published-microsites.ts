@@ -2,15 +2,4 @@
  * Microsites published to the public site, one at a time.
  * Add a slug here when an experiment ships.
  */
-export const PUBLISHED_MICROSITES: readonly string[] = [
-  'gauge-index',
-  'ons-dataset-catalogue',
-  'food-hygiene-registers',
-  'cycle-hire-docks',
-  'planning-datasets',
-  'ancient-woodland',
-  'bank-rate',
-  'recorded-crime',
-  'carbon-intensity',
-  'parliament-seats',
-];
+export const PUBLISHED_MICROSITES: readonly string[] = ['parliament-seats'];
