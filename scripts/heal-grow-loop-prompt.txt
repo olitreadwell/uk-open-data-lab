@@ -1,10 +1,10 @@
-# uk-data-lab grow loop: heal session
+# uk-open-data-lab grow loop: heal session
 
 The grow loop has skipped three iterations in a row. Diagnose why and fix the
 cause, not the symptom.
 
-Read `~/Library/Logs/uk-data-lab-loop.log` and
-`~/Library/Logs/uk-data-lab-loop-state.json` first: they record the skip
+Read `~/Library/Logs/uk-open-data-lab-loop.log` and
+`~/Library/Logs/uk-open-data-lab-loop-state.json` first: they record the skip
 reason each time.
 
 The usual causes, in order of likelihood:
@@ -22,10 +22,10 @@ The usual causes, in order of likelihood:
 When it is fixed, confirm the wiring still reports ok:
 
     $HOME/code/open-data/nz-usa-uk-data-stack/loops/loop-wrapper.sh \
-      "$HOME/code/open-data/uk-data-lab" \
-      "$HOME/code/open-data/uk-data-lab/scripts/grow-loop-prompt.txt" \
-      "$HOME/code/open-data/uk-data-lab/scripts/heal-grow-loop-prompt.txt" \
-      uk-data-lab --dry-run
+      "$HOME/code/open-data/uk-open-data-lab" \
+      "$HOME/code/open-data/uk-open-data-lab/scripts/grow-loop-prompt.txt" \
+      "$HOME/code/open-data/uk-open-data-lab/scripts/heal-grow-loop-prompt.txt" \
+      uk-open-data-lab --dry-run
 
 Then append one dated line to `LOOP-NOTES.md` describing the cause and the
 fix.

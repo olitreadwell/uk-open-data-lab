@@ -7,7 +7,7 @@ Canned prompts for the patterns this template uses. Paste them into Claude, Copi
 > Build a new component named `<ComponentName>` in `packages/ui/src/components/`.
 > Follow the canonical pattern documented in Storybook's Style Guide:
 >
-> - TSX uses `cn()` from `@uk-lab/ui`, with class order: SCSS identity + variants, then Tailwind utilities, then conditional state, then the `className` prop.
+> - TSX uses `cn()` from `@uk-open-data-lab/ui`, with class order: SCSS identity + variants, then Tailwind utilities, then conditional state, then the `className` prop.
 > - All custom CSS classes start with `numeral-` and use BEM-flat-dash (`.numeral-component-element-modifier`, no double-dashes).
 > - Create `packages/ui/src/styles/components/_<component>.scss`. Wire it into `main.scss` via `@use 'components/<component>'`.
 > - Use SCSS mixins from `abstracts/_mixins.scss` (`@include hover`, `@include breakpoint-below($bp-768)`, etc.) and functions from `_functions.scss` (`pxToRem`, `fluid-px`).

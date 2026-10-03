@@ -14,7 +14,7 @@ listed hold no records at all.
 ## Data source
 
 Planning Data, `https://www.planning.data.gov.uk/dataset.json`, fetched at
-deploy time through the `planning-datasets` adapter in `@uk-lab/uk-sources`.
+deploy time through the `planning-datasets` adapter in `@uk-open-data-connectors/uk-sources`.
 The endpoint answers without a key, and the platform is built by the Ministry
 of Housing, Communities and Local Government, with the data under the Open
 Government Licence v3.0.

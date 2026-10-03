@@ -1,4 +1,4 @@
-# nz-microsite-loop
+# uk-microsite-loop
 
 A 20-minute autonomous loop that turns NZ public data into a new microsite:
 research, build, test, merge, deploy, changelog, then review the loop itself
@@ -87,7 +87,7 @@ commit per microsite, then one merge and one deploy.
 ## Self-healing (the loop fixes itself)
 
 The wrapper (`scripts/run-microsite-loop.sh`) tracks consecutive skips in
-`~/Library/Logs/nz-microsite-loop-state.json`. After 3 skips in a row it
+`~/Library/Logs/uk-microsite-loop-state.json`. After 3 skips in a row it
 stops waiting and spawns a "heal the loop" session
 (`scripts/heal-loop-prompt.txt`) that:
 
@@ -234,4 +234,4 @@ when no wrapper is already running (check the lock file first).
 - Did the chart type repeat? Did the copy need rewriting?
 - Did any reference URL 404 after deploy?
 - Did the worktree/branch flow add friction? Would a script help?
-- Is there a new adapter or fixture worth adding to `@uk-lab/nz-sources`?
+- Is there a new adapter or fixture worth adding to `@uk-open-data-lab/nz-sources`?

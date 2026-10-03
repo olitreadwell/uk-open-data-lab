@@ -41,3 +41,20 @@ if (typeof globalThis.requestAnimationFrame !== 'function') {
     setTimeout(() => callback(performance.now()), 0) as unknown as number;
   globalThis.cancelAnimationFrame = (handle: number): void => clearTimeout(handle);
 }
+
+// jsdom does not implement matchMedia. Vitest 3 used to leave one in place and
+// vitest 4 does not, so tests that spy on window.matchMedia need it defined
+// before their module body runs.
+if (typeof globalThis.matchMedia !== 'function') {
+  globalThis.matchMedia = (query: string): MediaQueryList =>
+    ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+      addListener: () => undefined,
+      removeListener: () => undefined,
+      dispatchEvent: () => false,
+    }) as unknown as MediaQueryList;
+}

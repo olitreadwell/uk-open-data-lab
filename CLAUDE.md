@@ -1,4 +1,4 @@
-# uk-data-lab
+# uk-open-data-lab
 
 Small experiments digging through UK public data (Environment Agency, ONS, and
 whatever else turns up something weird, funny, or surprising). Built
@@ -26,9 +26,9 @@ See `AGENTS.md` for global agent rules and quality gates.
 
 ## Package structure
 
-- `apps/web` — Next.js app (`@uk-lab/web`)
+- `apps/web` — Next.js app (`@uk-open-data-lab/web`)
 - `packages/ui` — Shared layout primitives + canonical `Button` + shadcn/ui scaffold +
-  style system (`@uk-lab/ui`)
+  style system (`@uk-open-data-lab/ui`)
 - `packages/config-typescript` — Shared TypeScript configs
 - `packages/config-eslint` — Shared ESLint configs (flat config, ESLint 9)
 - `packages/config-tailwind` — Shared Tailwind theme + design tokens
@@ -98,10 +98,10 @@ see the comment atop `packages/ui/src/components/ui/button.tsx` for why a shadcn
 - **`_typography.scss`** — `.numeral-heading-*`, `.numeral-paragraph-*`,
   `.numeral-text-*` classes
 
-## What's in `@uk-lab/ui`
+## What's in `@uk-open-data-lab/ui`
 
 ```ts
-import { Box, Button, cn, Container, Flex, Grid, HStack, Section, Stack, VStack } from '@uk-lab/ui';
+import { Box, Button, cn, Container, Flex, Grid, HStack, Section, Stack, VStack } from '@uk-open-data-lab/ui';
 ```
 
 That's the public surface. We don't pre-ship dialogs, dropdowns, tables, etc as public

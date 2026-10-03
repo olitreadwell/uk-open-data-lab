@@ -2,8 +2,8 @@ import {
   DEFAULT_POLICE_CRIME_LOCATION,
   fetchPoliceCrimeSummary as fetchPoliceCrimeSummaryLive,
   parsePoliceCrimeSummary,
-} from '@uk-lab/uk-sources';
-import type { PoliceCrimeSummary } from '@uk-lab/uk-sources';
+} from '@uk-open-data-connectors/uk-sources';
+import type { PoliceCrimeSummary } from '@uk-open-data-connectors/uk-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

@@ -1,6 +1,9 @@
 'use client';
 
-import type { ParliamentPartySeats, ParliamentSeatSummary } from '@uk-lab/uk-sources';
+import type {
+  ParliamentPartySeats,
+  ParliamentSeatSummary,
+} from '@uk-open-data-connectors/uk-sources';
 
 import { formatCount } from '@/lib/uk-format';
 

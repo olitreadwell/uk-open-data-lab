@@ -9,7 +9,7 @@ and the River Thames comes out on top with 55.
 ## Data source
 
 Environment Agency flood-monitoring API, `/id/stations`, fetched at deploy time
-via `@uk-lab/uk-sources`. The endpoint caps its response, so `_limit=3000`
+via `@uk-open-data-connectors/uk-sources`. The endpoint caps its response, so `_limit=3000`
 returns a few thousand rows rather than the whole network. River names are counted as the
 agency publishes them, which is why "Tide" appears second without being a river.
 

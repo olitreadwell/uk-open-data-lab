@@ -282,7 +282,7 @@ Every microsite loop appends a dated entry here. Format:
   Both search from the browser (CORS open), so no build-time snapshot.
 - Sources: NZOR (170,151 names) and data.govt.nz CKAN (31,915 datasets);
   DOC and Te Ara references.
-- Loop review: client components cannot import @uk-lab/nz-sources (its
+- Loop review: client components cannot import @uk-open-data-lab/nz-sources (its
   fixtures read node:fs, which breaks the client bundle), so the browser
   fetchers live in apps/web/src/lib/live-sources.ts. A future refactor
   should split nz-sources into server and client entries to remove the
@@ -305,7 +305,7 @@ Every microsite loop appends a dated entry here. Format:
 
 - Shipped: shake-index - recent felt quakes as an adjustable bubble chart
   (magnitude and depth sliders, colour by felt intensity).
-- Sources: GeoNet API via @uk-lab/nz-sources (first non-Stats-NZ microsite);
+- Sources: GeoNet API via @uk-open-data-lab/nz-sources (first non-Stats-NZ microsite);
   GeoNet FAQ and Te Ara references.
 - Loop review: first worktree run. npm install in a fresh worktree is slow
   (node_modules rebuild); the runner script should reuse the main

@@ -1,5 +1,5 @@
-import { parseTflBikePoints, TFL_BIKE_POINTS_URL } from '@uk-lab/uk-sources';
-import type { DockingStation } from '@uk-lab/uk-sources';
+import { parseTflBikePoints, TFL_BIKE_POINTS_URL } from '@uk-open-data-connectors/uk-sources';
+import type { DockingStation } from '@uk-open-data-connectors/uk-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

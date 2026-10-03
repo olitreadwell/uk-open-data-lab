@@ -1,5 +1,5 @@
-import { parseFloodReadings, parseFloodStations } from '@uk-lab/uk-sources';
-import type { FloodMeasure, FloodStation } from '@uk-lab/uk-sources';
+import { parseFloodReadings, parseFloodStations } from '@uk-open-data-connectors/uk-sources';
+import type { FloodMeasure, FloodStation } from '@uk-open-data-connectors/uk-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';

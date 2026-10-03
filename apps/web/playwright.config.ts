@@ -1,9 +1,9 @@
 import { defineConfig } from '@playwright/test';
 
 const CI = !!process.env.CI;
-// E2E_PORT lets the suite run beside another dev server, which is common when
-// a second site in the family is already holding 3000.
-const PORT = process.env.E2E_PORT ?? '3000';
+// PORT lets the grow loop serve each country on its own port, so a second
+// site in the family never collides with this one.
+const PORT = process.env.PORT ?? process.env.E2E_PORT ?? '3000';
 // Normalized to end with "/" so relative page.goto() URLs resolve against the
 // baseURL path (the site may be served under a base path rather than at the
 // origin root).

@@ -412,10 +412,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('gauge-index')) }),
     ).resolves.toEqual({
-      title: 'Gauge index - uk-data-lab',
+      title: 'Gauge index - uk-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Gauge index - uk-data-lab',
+        title: 'Gauge index - uk-open-data-lab',
         description: expect.any(String),
         url: '/environment/gauge-index/',
         type: 'article',
@@ -426,7 +426,7 @@ describe('MicrositePage', () => {
   it('returns a generic title for an unknown microsite', async () => {
     await expect(generateMetadata({ params: Promise.resolve(paramsFor('nope')) })).resolves.toEqual(
       {
-        title: 'uk-data-lab',
+        title: 'uk-open-data-lab',
       },
     );
   });
@@ -464,10 +464,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('ons-dataset-catalogue')) }),
     ).resolves.toEqual({
-      title: 'ONS catalogue - uk-data-lab',
+      title: 'ONS catalogue - uk-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'ONS catalogue - uk-data-lab',
+        title: 'ONS catalogue - uk-open-data-lab',
         description: expect.any(String),
         url: '/open-data/ons-dataset-catalogue/',
         type: 'article',
@@ -509,10 +509,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('food-hygiene-registers')) }),
     ).resolves.toEqual({
-      title: 'Food hygiene registers - uk-data-lab',
+      title: 'Food hygiene registers - uk-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Food hygiene registers - uk-data-lab',
+        title: 'Food hygiene registers - uk-open-data-lab',
         description: expect.any(String),
         url: '/health/food-hygiene-registers/',
         type: 'article',
@@ -554,10 +554,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('cycle-hire-docks')) }),
     ).resolves.toEqual({
-      title: 'Cycle hire docks - uk-data-lab',
+      title: 'Cycle hire docks - uk-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Cycle hire docks - uk-data-lab',
+        title: 'Cycle hire docks - uk-open-data-lab',
         description: expect.any(String),
         url: '/transport/cycle-hire-docks/',
         type: 'article',
@@ -599,10 +599,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('planning-datasets')) }),
     ).resolves.toEqual({
-      title: 'Planning datasets - uk-data-lab',
+      title: 'Planning datasets - uk-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Planning datasets - uk-data-lab',
+        title: 'Planning datasets - uk-open-data-lab',
         description: expect.any(String),
         url: '/open-data/planning-datasets/',
         type: 'article',
@@ -681,10 +681,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('bank-rate')) }),
     ).resolves.toEqual({
-      title: 'Bank Rate - uk-data-lab',
+      title: 'Bank Rate - uk-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Bank Rate - uk-data-lab',
+        title: 'Bank Rate - uk-open-data-lab',
         description: expect.any(String),
         url: '/economy/bank-rate/',
         type: 'article',
@@ -696,10 +696,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('ancient-woodland')) }),
     ).resolves.toEqual({
-      title: 'Ancient woodland - uk-data-lab',
+      title: 'Ancient woodland - uk-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Ancient woodland - uk-data-lab',
+        title: 'Ancient woodland - uk-open-data-lab',
         description: expect.any(String),
         url: '/biodiversity/ancient-woodland/',
         type: 'article',
@@ -751,10 +751,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('recorded-crime')) }),
     ).resolves.toEqual({
-      title: 'Recorded crime - uk-data-lab',
+      title: 'Recorded crime - uk-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Recorded crime - uk-data-lab',
+        title: 'Recorded crime - uk-open-data-lab',
         description: expect.any(String),
         url: '/society/recorded-crime/',
         type: 'article',
@@ -805,10 +805,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('parliament-seats')) }),
     ).resolves.toEqual({
-      title: 'Parliament seats - uk-data-lab',
+      title: 'Parliament seats - uk-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Parliament seats - uk-data-lab',
+        title: 'Parliament seats - uk-open-data-lab',
         description: expect.any(String),
         url: '/society/parliament-seats/',
         type: 'article',

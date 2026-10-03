@@ -1,11 +1,16 @@
+// PORT lets the grow loop serve each country's site on its own port so the
+// three countries can run at the same time. E2E_PORT is the older name and
+// still works when PORT is unset.
+const PORT = process.env.PORT ?? process.env.E2E_PORT ?? '3000';
+const ORIGIN = `http://127.0.0.1:${PORT}`;
 module.exports = {
   ci: {
     collect: {
       url: [
-        'http://127.0.0.1:3000/',
-        'http://127.0.0.1:3000/contact',
-        'http://127.0.0.1:3000/feedback',
-        'http://127.0.0.1:3000/help',
+        `${ORIGIN}/`,
+        `${ORIGIN}/contact`,
+        `${ORIGIN}/feedback`,
+        `${ORIGIN}/help`,
       ],
       startServerCommand: 'pnpm start',
       numberOfRuns: 1,

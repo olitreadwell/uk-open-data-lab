@@ -1,5 +1,9 @@
-import { ONS_DATASETS_URL, parseOnsDatasets, summarizeOnsDatasets } from '@uk-lab/uk-sources';
-import type { OnsDatasetSummary } from '@uk-lab/uk-sources';
+import {
+  ONS_DATASETS_URL,
+  parseOnsDatasets,
+  summarizeOnsDatasets,
+} from '@uk-open-data-connectors/uk-sources';
+import type { OnsDatasetSummary } from '@uk-open-data-connectors/uk-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

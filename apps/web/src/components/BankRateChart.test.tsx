@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import type { BankRateSpell } from '@uk-lab/uk-sources';
+import type { BankRateSpell } from '@uk-open-data-connectors/uk-sources';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { describe, expect, it } from 'vitest';
 

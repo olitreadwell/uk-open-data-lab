@@ -1,17 +1,17 @@
-import { Container, Stack } from '@uk-lab/ui';
+import { Container, Stack } from '@uk-open-data-lab/ui';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'About - uk-data-lab',
-  description: 'What uk-data-lab is, where the data comes from, and how the site is built.',
+  title: 'About - uk-open-data-lab',
+  description: 'What uk-open-data-lab is, where the data comes from, and how the site is built.',
 };
 
 export default function AboutPage(): React.ReactElement {
   return (
     <Container size="wide">
       <Stack className="max-w-3xl gap-6 py-[var(--spacing-2xl)]">
-        <h1 className="numeral-heading-3xl">About uk-data-lab</h1>
+        <h1 className="numeral-heading-3xl">About uk-open-data-lab</h1>
         <p className="numeral-paragraph-lg text-[var(--color-muted)]">
           Small experiments digging through UK public data for the funny and the surprising. One
           experiment at a time, each on a real dataset.
@@ -77,7 +77,7 @@ export default function AboutPage(): React.ReactElement {
           <p className="numeral-paragraph-md">
             The code is public on{' '}
             <Link
-              href="https://github.com/olitreadwell/uk-data-lab"
+              href="https://github.com/olitreadwell/uk-open-data-lab"
               className="underline hover:text-[var(--color-fg)]"
             >
               GitHub

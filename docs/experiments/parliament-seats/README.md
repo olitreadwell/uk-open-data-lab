@@ -14,7 +14,7 @@ one of the seats has nobody in it at all.
 The UK Parliament Members API,
 `https://members-api.parliament.uk/api/Parties/StateOfTheParties/1/<date>`,
 read at deploy time through the `parliament-seats` adapter in
-`@uk-lab/uk-sources`. The call needs a house number and a date, so the adapter
+`@uk-open-data-connectors/uk-sources`. The call needs a house number and a date, so the adapter
 asks for house 1 (the Commons) on the build day. It answers without a key, and
 Parliament publishes the data under the Open Parliament Licence v3.0.
 

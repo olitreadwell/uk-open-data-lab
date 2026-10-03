@@ -1,4 +1,4 @@
-import { Container, Stack } from '@uk-lab/ui';
+import { Container, Stack } from '@uk-open-data-lab/ui';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -29,14 +29,14 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const { category } = await params;
   const categoryLabel = categoryLabelForSlug(category);
   if (categoryLabel === undefined) {
-    return { title: 'uk-data-lab' };
+    return { title: 'uk-open-data-lab' };
   }
   const categoryDescription = CATEGORY_DETAILS[categoryLabel];
   return {
-    title: `${categoryLabel} - uk-data-lab`,
+    title: `${categoryLabel} - uk-open-data-lab`,
     description: categoryDescription,
     openGraph: {
-      title: `${categoryLabel} - uk-data-lab`,
+      title: `${categoryLabel} - uk-open-data-lab`,
       description: categoryDescription,
       url: `/${category}/`,
       type: 'website',

@@ -16,7 +16,16 @@ export default defineConfig({
       exclude: [
         'node_modules/',
         '.next/',
+        // The static export the build writes. Measuring it drags the totals
+        // down with minified chunks and it is regenerated on every build.
+        'out/',
         'e2e/',
+        // Test and build artifacts. Playwright's HTML report ships its own
+        // bundled JS, which v8 otherwise counts as first-party source.
+        'playwright-report/',
+        'test-results/',
+        '.turbo/',
+        'coverage/',
         '**/*.stories.{ts,tsx}',
         '**/*.d.ts',
         'vitest.config.ts',

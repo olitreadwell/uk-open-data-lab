@@ -1,5 +1,5 @@
-import { fetchParliamentSeats, parseParliamentSeats } from '@uk-lab/uk-sources';
-import type { ParliamentSeatSummary } from '@uk-lab/uk-sources';
+import { fetchParliamentSeats, parseParliamentSeats } from '@uk-open-data-connectors/uk-sources';
+import type { ParliamentSeatSummary } from '@uk-open-data-connectors/uk-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import type { BankRateSpell } from '@uk-lab/uk-sources';
+import type { BankRateSpell } from '@uk-open-data-connectors/uk-sources';
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { TooltipContentProps } from 'recharts';
 

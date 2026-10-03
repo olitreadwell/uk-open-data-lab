@@ -1,4 +1,7 @@
-import type { CarbonIntensityPeriod, CarbonIntensityWindow } from '@uk-lab/uk-sources';
+import type {
+  CarbonIntensityPeriod,
+  CarbonIntensityWindow,
+} from '@uk-open-data-connectors/uk-sources';
 import { describe, expect, it } from 'vitest';
 
 import {

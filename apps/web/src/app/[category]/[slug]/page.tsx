@@ -1,5 +1,5 @@
-import { Container } from '@uk-lab/ui';
-import type { CarbonIntensityIndex } from '@uk-lab/uk-sources';
+import type { CarbonIntensityIndex } from '@uk-open-data-connectors/uk-sources';
+import { Container } from '@uk-open-data-lab/ui';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -82,14 +82,14 @@ export async function generateMetadata({ params }: MicrositePageProps): Promise<
   const { category, slug } = await params;
   const microsite = MICROSITES.find((candidate) => candidate.slug === slug);
   if (microsite === undefined || categorySlugFor(microsite) !== category) {
-    return { title: 'uk-data-lab' };
+    return { title: 'uk-open-data-lab' };
   }
   const path = micrositePathFor(microsite);
   return {
-    title: `${microsite.label} - uk-data-lab`,
+    title: `${microsite.label} - uk-open-data-lab`,
     description: microsite.description,
     openGraph: {
-      title: `${microsite.label} - uk-data-lab`,
+      title: `${microsite.label} - uk-open-data-lab`,
       description: microsite.description,
       url: path,
       type: 'article',

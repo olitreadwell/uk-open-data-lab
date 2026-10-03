@@ -1,10 +1,10 @@
 # ORCHESTRATION.md — gauge-index
 
-Built 2026-09-23 to prove out `@uk-lab/uk-sources` end to end.
+Built 2026-09-23 to prove out `@uk-open-data-connectors/uk-sources` end to end.
 
 - TDD: the transform tests were written first (`buildGaugeStationIndex`,
   `preferredMeasureIdsFor`, `buildGaugeLiveLevel`), then the chart and page.
-- Live smoke test run explicitly: `RUN_SMOKE=1 npm run test:smoke -w @uk-lab/uk-sources`.
+- Live smoke test run explicitly: `RUN_SMOKE=1 npm run test:smoke -w @uk-open-data-connectors/uk-sources`.
 - One real finding surfaced by running the parser against the full station list:
   the agency returns some text fields as arrays and leaves nine groundwater
   stations without coordinates, which made the whole payload unparseable. Fixed

@@ -1,6 +1,6 @@
 # parliament-seats: draw the whole House of Commons as a waffle
 
-`parliament-seats` is the tenth published microsite on `uk-data-lab`. It draws
+`parliament-seats` is the tenth published microsite on `uk-open-data-lab`. It draws
 all 650 seats of the House of Commons as one square per seat, coloured by the
 party that holds it, from the UK Parliament Members API.
 

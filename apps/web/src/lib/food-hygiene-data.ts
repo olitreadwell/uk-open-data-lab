@@ -4,8 +4,8 @@ import {
   FSA_AUTHORITIES_URL,
   parseFoodHygieneAuthorities,
   summarizeFoodHygieneAuthorities,
-} from '@uk-lab/uk-sources';
-import type { FoodHygieneSummary } from '@uk-lab/uk-sources';
+} from '@uk-open-data-connectors/uk-sources';
+import type { FoodHygieneSummary } from '@uk-open-data-connectors/uk-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

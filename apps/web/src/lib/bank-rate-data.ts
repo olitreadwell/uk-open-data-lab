@@ -3,8 +3,8 @@ import {
   formatBankRateQueryDate,
   parseBankRateCsv,
   summarizeBankRateSeries,
-} from '@uk-lab/uk-sources';
-import type { BankRateSummary } from '@uk-lab/uk-sources';
+} from '@uk-open-data-connectors/uk-sources';
+import type { BankRateSummary } from '@uk-open-data-connectors/uk-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

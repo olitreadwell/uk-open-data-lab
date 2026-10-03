@@ -11,7 +11,7 @@ in 2023, 130 in 2024, and 12 across 2025 and 2026.
 ## Data source
 
 ONS beta API, `/v1/datasets?limit=1000`, fetched at deploy time through the
-`ons-datasets` adapter in `@uk-lab/uk-sources`. The call is keyless. The
+`ons-datasets` adapter in `@uk-open-data-connectors/uk-sources`. The call is keyless. The
 endpoint answers with its whole catalogue below the requested limit: the
 response reports `total_count` 338 against a limit of 1000, so the list is
 complete rather than a first page.

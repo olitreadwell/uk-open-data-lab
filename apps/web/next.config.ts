@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['@uk-lab/ui', '@uk-lab/uk-sources'],
+  transpilePackages: ['@uk-open-data-lab/ui', '@uk-open-data-connectors/uk-sources'],
   typedRoutes: true,
   devIndicators: false,
   // The site is a static export (no server), so the app exports to plain

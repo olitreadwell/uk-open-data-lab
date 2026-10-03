@@ -317,7 +317,7 @@ yml) are manual-only going forward to stop burning Vercel builds per PR.
   WCAG A/AA reports 0 contrast and 0 other violations across 6 pages in both
   light and dark mode. Pushed to main in two commits; the single primary
   Vercel deploy succeeded and the live probe against
-  https://nz-data-lab.vercel.app passes the same route + axe checks.
+  https://nz-open-data-lab.vercel.app passes the same route + axe checks.
 - CI advisory jobs (e2e shards, axe e2e, lint) still fail on GitHub runners
   with pre-existing issues (keyboard-focus tab-through assertion, stats-nz
   jsdoc/no-magic-number warnings); type-check, build, CodeQL, npm audit, and

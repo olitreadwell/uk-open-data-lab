@@ -4,7 +4,7 @@ A map of this repo for anyone (or any agent) arriving cold.
 
 ## The site
 
-`uk-data-lab` is a static Next.js export of small experiments on UK public
+`uk-open-data-lab` is a static Next.js export of small experiments on UK public
 data. Five microsites are published. The home page is
 (`apps/web/src/app/page.tsx`), and each story lives at
 `/<category-slug>/<slug>/`.

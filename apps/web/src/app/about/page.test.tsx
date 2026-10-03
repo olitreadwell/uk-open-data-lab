@@ -9,7 +9,7 @@ expect.extend(toHaveNoViolations);
 describe('AboutPage', () => {
   it('explains what the site is and where the data comes from', () => {
     render(<AboutPage />);
-    expect(screen.getByRole('heading', { level: 1, name: 'About uk-data-lab' })).toBeVisible();
+    expect(screen.getByRole('heading', { level: 1, name: 'About uk-open-data-lab' })).toBeVisible();
     expect(screen.getByText(/River Thames leads with 55 stations/)).toBeVisible();
     expect(screen.getByText(/agency flood-monitoring API/)).toBeVisible();
     expect(screen.getByRole('link', { name: 'uk-open-data-connectors' })).toHaveAttribute(
@@ -22,7 +22,7 @@ describe('AboutPage', () => {
     );
     expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute(
       'href',
-      'https://github.com/olitreadwell/uk-data-lab',
+      'https://github.com/olitreadwell/uk-open-data-lab',
     );
   });
 

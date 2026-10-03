@@ -7,7 +7,7 @@
  *
  * Dark mode strategy: `.dark` class on `<html>`.
  *
- * Import path (consumers): `@import '@uk-lab/ui/tokens.css';`
+ * Import path (consumers): `@import '@uk-open-data-lab/ui/tokens.css';`
  */
 
 @import 'tw-animate-css';

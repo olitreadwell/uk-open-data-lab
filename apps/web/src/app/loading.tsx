@@ -1,4 +1,4 @@
-import { Container } from '@uk-lab/ui';
+import { Container } from '@uk-open-data-lab/ui';
 
 export default function Loading(): React.ReactElement {
   return (

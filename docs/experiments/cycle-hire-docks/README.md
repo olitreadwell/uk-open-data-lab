@@ -11,7 +11,7 @@ hold 60 or more. The biggest is Jubilee Plaza at Canary Wharf with 63.
 ## Data source
 
 Transport for London Unified API, `/BikePoint`, fetched at deploy time through
-the `tfl-bike-points` adapter in `@uk-lab/uk-sources`. The endpoint answers
+the `tfl-bike-points` adapter in `@uk-open-data-connectors/uk-sources`. The endpoint answers
 without a key. TfL asks for an app key above the free rate limit, so the
 adapter takes one and sends it as `app_key`, and the site does not use it.
 

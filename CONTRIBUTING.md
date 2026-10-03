@@ -43,7 +43,7 @@ git commit -m "docs: update testing guide"
 - TypeScript strict mode with explicit types on params and returns
 - No `any` without documented justification
 - Functional React components with hooks
-- Use existing `@uk-lab/ui` components from shadcn/ui
+- Use existing `@uk-open-data-lab/ui` components from shadcn/ui
 - JSDoc on public APIs (`@param`, `@returns`, `@example`)
 
 ## Testing
@@ -67,7 +67,7 @@ Use the PR template. Every PR must:
 ```bash
 # Add to a specific workspace
 npm install <package> --workspace=apps/web
-npm install -D <package> --workspace=@uk-lab/ui
+npm install -D <package> --workspace=@uk-open-data-lab/ui
 ```
 
 ## Troubleshooting

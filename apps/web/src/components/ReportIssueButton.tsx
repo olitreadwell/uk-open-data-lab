@@ -15,7 +15,7 @@ const ISSUE_TYPES = [
   'Other',
 ] as const;
 const SEVERITIES = ['Blocks me', 'Annoying', 'Cosmetic', 'Not sure'] as const;
-const GITHUB_NEW_ISSUE_URL = 'https://github.com/olitreadwell/uk-data-lab/issues/new';
+const GITHUB_NEW_ISSUE_URL = 'https://github.com/olitreadwell/uk-open-data-lab/issues/new';
 const MAX_TITLE_LENGTH = 200;
 const MIN_DESCRIPTION_LENGTH = 10;
 const COPY_FEEDBACK_MS = 2000;

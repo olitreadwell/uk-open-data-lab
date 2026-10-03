@@ -1,5 +1,5 @@
 {
-  "name": "uk-data-lab",
+  "name": "uk-open-data-lab",
   "version": "0.0.0",
   "private": true,
   "packageManager": "npm@10.9.2",
@@ -24,19 +24,19 @@
     "test:coverage": "turbo test:coverage",
     "test:e2e": "turbo test:e2e",
     "test:a11y": "turbo test:a11y",
-    "perf": "pnpm dlx @lhci/cli@latest autorun",
+    "perf": "npx --yes @lhci/cli@0.15.1 autorun",
     "smoke": "bash scripts/smoke.sh",
     "check:links": "node scripts/check-internal-links.mjs",
     "check:external-links": "node scripts/check-external-links.mjs",
-    "audit": "pnpm audit",
+    "audit": "npm audit --omit=dev --audit-level=high",
     "test:setup": "node --test scripts/setup.test.mjs",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build && npm run smoke && npm run test:e2e && npm run check:links",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && node scripts/check-coverage.mjs && npm run build && npm run smoke && npm run test:e2e && npm run check:links",
     "prepare": "husky || true",
     "type-check": "turbo run type-check",
     "test:unit": "turbo test --",
     "test:visual": "turbo test:visual",
-    "storybook": "turbo storybook --filter=@uk-lab/ui",
-    "build:storybook": "turbo build-storybook --filter=@uk-lab/ui",
+    "storybook": "turbo storybook --filter=@uk-open-data-lab/ui",
+    "build:storybook": "turbo build-storybook --filter=@uk-open-data-lab/ui",
     "clean": "rm -rf .turbo apps/*/.next apps/*/.turbo apps/*/dist apps/*/tsconfig.tsbuildinfo apps/*/coverage apps/*/playwright-report apps/*/test-results packages/*/.turbo packages/*/dist packages/*/tsconfig.tsbuildinfo packages/*/.rollup.cache packages/*/coverage packages/*/storybook-static",
     "clean:all": "rm -rf node_modules apps/*/node_modules packages/*/node_modules .turbo apps/*/.next apps/*/.turbo apps/*/dist apps/*/tsconfig.tsbuildinfo apps/*/coverage apps/*/playwright-report apps/*/test-results packages/*/.turbo packages/*/dist packages/*/tsconfig.tsbuildinfo packages/*/.rollup.cache packages/*/coverage packages/*/storybook-static && npm cache clean --force"
   },
@@ -85,7 +85,9 @@
     },
     "@vercel/backends": {
       "path-to-regexp": "^8.4.0"
-    }
+    },
+    "ajv@8.6.3": "8.20.0",
+    "uuid": "11.1.1"
   },
   "devDependencies": {
     "@types/node": "26.3.0",
@@ -96,7 +98,6 @@
     "@clack/prompts": "^0.7",
     "@eslint/js": "^9.39.5",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "ajv": "^8.20.0",
     "globals": "^17.4.0",
     "lint-staged": "^15.2.10",
     "prettier-plugin-tailwindcss": "^0.6.11",
@@ -104,5 +105,5 @@
     "vercel": "59.1.4"
   },
   "dependencies": {},
-  "description": "UK Data Lab (scaffold, derived from nz-data-lab)"
+  "description": "UK Data Lab (scaffold, derived from nz-open-data-lab)"
 }

@@ -1,4 +1,4 @@
-import type { CarbonIntensityBandCount } from '@uk-lab/uk-sources';
+import type { CarbonIntensityBandCount } from '@uk-open-data-connectors/uk-sources';
 
 import type { CarbonIntensityDay, CarbonIntensitySlotProfile } from '@/lib/carbon-intensity-data';
 import {

@@ -1,5 +1,5 @@
 // shadcn/Base UI scaffold primitive — NOT the canonical Button (see
-// ../Button.tsx, exported from @uk-lab/ui). Kept unexported so `npx shadcn add
+// ../Button.tsx, exported from @uk-open-data-lab/ui). Kept unexported so `npx shadcn add
 // <component>` has a working base-nova pattern to extend for future
 // interactive primitives (dialog, dropdown, etc).
 import { Button as ButtonPrimitive } from '@base-ui/react/button';

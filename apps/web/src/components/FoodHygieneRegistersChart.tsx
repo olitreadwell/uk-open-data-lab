@@ -1,6 +1,6 @@
 'use client';
 
-import type { FoodHygieneAuthority } from '@uk-lab/uk-sources';
+import type { FoodHygieneAuthority } from '@uk-open-data-connectors/uk-sources';
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { TooltipContentProps } from 'recharts';
 

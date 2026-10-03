@@ -1,4 +1,4 @@
-# uk-data-lab grow loop (daily)
+# uk-open-data-lab grow loop (daily)
 
 You are running one iteration of the UK data lab grow loop on `main`, from a
 clean tree up to date with `origin/main`.
@@ -13,7 +13,7 @@ renders one story per adapter. This loop keeps the demo alive and grows it.
    e2e, links) with `E2E_PORT=3100` if port 3000 is busy. Fix what is broken,
    including a stale or wrong number on a published story. Do not weaken a
    test to make it pass.
-2. Verify the deploy. Fetch `https://uk-data-lab.vercel.app` and the published
+2. Verify the deploy. Fetch `https://uk-open-data-lab.vercel.app` and the published
    story path, and confirm the numbers in the HTML match the number the source
    returns today. A story that renders the wrong figure is a bug.
 3. Grow. Add exactly one new microsite story, end to end:

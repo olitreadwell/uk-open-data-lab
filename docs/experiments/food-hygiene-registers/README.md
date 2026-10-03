@@ -12,7 +12,7 @@ registers look different from the other 331.
 
 Food Standards Agency Food Hygiene Rating Scheme API, `/Authorities/basic`,
 fetched at deploy time through the `food-hygiene-authorities` adapter in
-`@uk-lab/uk-sources`. The call carries the `x-api-version: 2` header the FSA
+`@uk-open-data-connectors/uk-sources`. The call carries the `x-api-version: 2` header the FSA
 asks for. Without it the endpoint answers HTTP 404, which reads like a retired
 service but is a missing header.
 

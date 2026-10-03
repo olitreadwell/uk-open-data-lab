@@ -1,6 +1,6 @@
 // Public surface.
 //
-// What ships from `@uk-lab/ui`:
+// What ships from `@uk-open-data-lab/ui`:
 //   - `cn` utility
 //   - Layout primitives (Box, Stack/HStack/VStack, Flex, Grid, Container, Section)
 //   - One canonical Button as a reference implementation of the hybrid pattern
