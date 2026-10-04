@@ -48,7 +48,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tar": "^7.5.22",
-    "js-yaml": "^4.3.1",
+    "js-yaml": "^4.3.2",
     "smol-toml": "^1.6.1",
     "@tootallnate/once": "2.0.1",
     "on-headers": "1.1.0",
