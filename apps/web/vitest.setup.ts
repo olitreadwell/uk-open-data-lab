@@ -56,5 +56,5 @@ if (typeof globalThis.matchMedia !== 'function') {
       addListener: () => undefined,
       removeListener: () => undefined,
       dispatchEvent: () => false,
-    }) as unknown as MediaQueryList;
+    });
 }
