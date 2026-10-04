@@ -54,19 +54,19 @@
     "on-headers": "1.1.0",
     "@vercel/node": {
       "undici": "^6.28.0",
-      "path-to-regexp": "^6.3.0"
+      "path-to-regexp": "^8.4.2"
     },
     "vercel": {
       "undici": "^6.28.0"
     },
     "@vercel/express": {
-      "path-to-regexp": "^8.4.0"
+      "path-to-regexp": "^8.4.2"
     },
     "@vercel/hono": {
-      "path-to-regexp": "^8.4.0"
+      "path-to-regexp": "^8.4.2"
     },
     "@vercel/remix-builder": {
-      "path-to-regexp": "^6.3.0"
+      "path-to-regexp": "^8.4.2"
     },
     "@vercel/static-config": {
       "ajv": "^8.20.0"
@@ -81,10 +81,10 @@
       "minimatch": "^10.2.3"
     },
     "@vercel/fun": {
-      "path-to-regexp": "^8.4.0"
+      "path-to-regexp": "^8.4.2"
     },
     "@vercel/backends": {
-      "path-to-regexp": "^8.4.0"
+      "path-to-regexp": "^8.4.2"
     }
   },
   "devDependencies": {
