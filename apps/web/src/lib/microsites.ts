@@ -99,12 +99,12 @@ export function micrositePathFor(microsite: Pick<MicrositeConfig, 'slug' | 'cate
   return `/${CATEGORY_SLUGS[microsite.category]}/${microsite.slug}/`;
 }
 
-/** Other microsites in the same category, same data source ranked first. */
+/** Other published microsites in the same category, same data source ranked first. */
 export function relatedMicrositesFor(
   microsite: Pick<MicrositeConfig, 'slug' | 'category' | 'dataSource'>,
   limit = 4,
 ): MicrositeConfig[] {
-  return [...MICROSITES]
+  return [...SHOWN_MICROSITES]
     .filter(
       (candidate) => candidate.slug !== microsite.slug && candidate.category === microsite.category,
     )
@@ -709,4 +709,13 @@ export const MICROSITES: MicrositeConfig[] = withHiddenMicrositesRemoved<Microsi
       },
     ],
   },
-]).filter((microsite) => PUBLISHED_MICROSITES.includes(microsite.slug));
+]);
+
+/**
+ * The microsites the site shows right now, in ship order. The lab publishes
+ * one story at a time; the rest stay built, tested, and reachable behind
+ * their own URLs.
+ */
+export const SHOWN_MICROSITES: MicrositeConfig[] = MICROSITES.filter((microsite) =>
+  PUBLISHED_MICROSITES.includes(microsite.slug),
+);

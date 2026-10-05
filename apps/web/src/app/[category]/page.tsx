@@ -9,6 +9,7 @@ import {
   CATEGORY_SLUGS,
   categoryLabelForSlug,
   MICROSITES,
+  SHOWN_MICROSITES,
 } from '@/lib/microsites';
 import type { MicrositeCategory } from '@/lib/microsites';
 
@@ -66,7 +67,7 @@ export default async function CategoryPage({
   if (categoryLabel === undefined) {
     notFound();
   }
-  const microsites = MICROSITES.filter((microsite) => microsite.category === categoryLabel);
+  const microsites = SHOWN_MICROSITES.filter((microsite) => microsite.category === categoryLabel);
   const cards = microsites.map(toGalleryCard);
   const sourceCount = new Set(microsites.map((microsite) => microsite.dataSource)).size;
 
