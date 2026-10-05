@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { HIDDEN_MICROSITES } from '@/lib/hidden-microsites';
 import { CATEGORY_SLUGS, MICROSITES } from '@/lib/microsites';
+import { PUBLISHED_MICROSITES } from '@/lib/published-microsites';
 
 import HomePage from './page';
 
@@ -57,7 +58,7 @@ describe('HomePage', () => {
   it('links every visible card to its story page and omits hidden ones', async () => {
     const stream = await renderToReadableStream(<HomePage />);
     const html = await new Response(stream).text();
-    for (const slug of ['gauge-index', 'ons-dataset-catalogue']) {
+    for (const slug of PUBLISHED_MICROSITES) {
       expect(html).toContain(`href="/${categorySlugForTest(slug)}/${slug}"`);
     }
   });

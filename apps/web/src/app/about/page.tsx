@@ -35,14 +35,14 @@ export default function AboutPage(): React.ReactElement {
         </section>
 
         <section className="space-y-3">
-          <h2 className="numeral-heading-lg">UK open data</h2>
+          <h2 className="numeral-heading-lg">Awesome UK Open Data</h2>
           <p className="numeral-paragraph-md">
             Sources start in{' '}
             <Link
-              href="https://github.com/olitreadwell/awesome-open-uk-data"
+              href="https://github.com/olitreadwell/awesome-uk-open-data"
               className="underline hover:text-[var(--color-fg)]"
             >
-              awesome-open-uk-data
+              awesome-uk-open-data
             </Link>
             , a curated list of UK open data and the APIs that serve it, from central government
             agencies to local councils and the national mapping agencies.

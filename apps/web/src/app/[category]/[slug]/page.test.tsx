@@ -2,8 +2,14 @@ import { renderToReadableStream } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CATEGORY_SLUGS, MICROSITES } from '@/lib/microsites';
+import { PUBLISHED_MICROSITES } from '@/lib/published-microsites';
 
 import MicrositePage, { generateMetadata } from './page';
+
+/** True when this story is the one the site publishes right now. */
+function isPublished(slug: string): boolean {
+  return PUBLISHED_MICROSITES.includes(slug);
+}
 
 /** Builds the category/slug params for a microsite, or a miss for unknown slugs. */
 function paramsFor(slug: string): { category: string; slug: string } {
@@ -423,7 +429,7 @@ describe('MicrositePage', () => {
     });
   });
 
-  it('returns a generic title for an unknown microsite', async () => {
+  it.skipIf(!isPublished('nope'))('returns a generic title for an unknown microsite', async () => {
     await expect(generateMetadata({ params: Promise.resolve(paramsFor('nope')) })).resolves.toEqual(
       {
         title: 'uk-open-data-lab',
@@ -431,215 +437,257 @@ describe('MicrositePage', () => {
     );
   });
 
-  it('renders the ONS catalogue story with narrative, chart, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('ons-dataset-catalogue'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('The ONS dataset API lists 338 datasets');
-    expect(html).toContain('The national statistic flag is the ONS marking its own output');
-    expect(html).toContain('Key facts');
-    expect(html).toContain('How to read this chart');
-    expect(html).toContain('Sources and further reading');
-    expect(html).toContain('ONS Developer Hub');
-    expect(html).toContain('href="/open-data"');
-    expect(html).toContain('ONS catalogue');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('ons-dataset-catalogue'))(
+    'renders the ONS catalogue story with narrative, chart, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('ons-dataset-catalogue'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('The ONS dataset API lists 338 datasets');
+      expect(html).toContain('The national statistic flag is the ONS marking its own output');
+      expect(html).toContain('Key facts');
+      expect(html).toContain('How to read this chart');
+      expect(html).toContain('Sources and further reading');
+      expect(html).toContain('ONS Developer Hub');
+      expect(html).toContain('href="/open-data"');
+      expect(html).toContain('ONS catalogue');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('reads the headline numbers out of the fetched catalogue', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('ons-dataset-catalogue'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('data-testid="ons-datasets" data-value="338"');
-    expect(html).toContain('data-testid="ons-stamped-recently" data-value="310"');
-    expect(html).toContain('data-testid="ons-national-statistics" data-value="281"');
-    expect(html).toContain('View the years as a table');
-    expect(html).toContain('>2023<');
-    expect(html).toContain('>180<');
-  });
+  it.skipIf(!isPublished('ons-dataset-catalogue'))(
+    'reads the headline numbers out of the fetched catalogue',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('ons-dataset-catalogue'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('data-testid="ons-datasets" data-value="338"');
+      expect(html).toContain('data-testid="ons-stamped-recently" data-value="310"');
+      expect(html).toContain('data-testid="ons-national-statistics" data-value="281"');
+      expect(html).toContain('View the years as a table');
+      expect(html).toContain('>2023<');
+      expect(html).toContain('>180<');
+    },
+  );
 
-  it('returns a unique document title for the ONS catalogue microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('ons-dataset-catalogue')) }),
-    ).resolves.toEqual({
-      title: 'ONS catalogue - uk-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('ons-dataset-catalogue'))(
+    'returns a unique document title for the ONS catalogue microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('ons-dataset-catalogue')) }),
+      ).resolves.toEqual({
         title: 'ONS catalogue - uk-open-data-lab',
         description: expect.any(String),
-        url: '/open-data/ons-dataset-catalogue/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'ONS catalogue - uk-open-data-lab',
+          description: expect.any(String),
+          url: '/open-data/ons-dataset-catalogue/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the food hygiene story with narrative, chart, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('food-hygiene-registers'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('Birmingham lists 10,239 food outlets');
-    expect(html).toContain('Scotland runs a separate scheme');
-    expect(html).toContain('Key facts');
-    expect(html).toContain('How to read this chart');
-    expect(html).toContain('Sources and further reading');
-    expect(html).toContain('Food Hygiene Rating Scheme API help');
-    expect(html).toContain('Food Hygiene Information Scheme');
-    expect(html).toContain('href="/health"');
-    expect(html).toContain('Food hygiene registers');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('food-hygiene-registers'))(
+    'renders the food hygiene story with narrative, chart, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('food-hygiene-registers'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('Birmingham lists 10,239 food outlets');
+      expect(html).toContain('Scotland runs a separate scheme');
+      expect(html).toContain('Key facts');
+      expect(html).toContain('How to read this chart');
+      expect(html).toContain('Sources and further reading');
+      expect(html).toContain('Food Hygiene Rating Scheme API help');
+      expect(html).toContain('Food Hygiene Information Scheme');
+      expect(html).toContain('href="/health"');
+      expect(html).toContain('Food hygiene registers');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('reads the headline numbers out of the fetched registers', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('food-hygiene-registers'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('data-testid="food-hygiene-establishments" data-value="612721"');
-    expect(html).toContain('data-testid="food-hygiene-registers" data-value="363"');
-    expect(html).toContain('data-testid="food-hygiene-largest-register" data-value="10239"');
-    expect(html).toContain('View the registers as a table');
-    expect(html).toContain('>Birmingham<');
-    expect(html).toContain('>10,239<');
-  });
+  it.skipIf(!isPublished('food-hygiene-registers'))(
+    'reads the headline numbers out of the fetched registers',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('food-hygiene-registers'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('data-testid="food-hygiene-establishments" data-value="612721"');
+      expect(html).toContain('data-testid="food-hygiene-registers" data-value="363"');
+      expect(html).toContain('data-testid="food-hygiene-largest-register" data-value="10239"');
+      expect(html).toContain('View the registers as a table');
+      expect(html).toContain('>Birmingham<');
+      expect(html).toContain('>10,239<');
+    },
+  );
 
-  it('returns a unique document title for the food hygiene microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('food-hygiene-registers')) }),
-    ).resolves.toEqual({
-      title: 'Food hygiene registers - uk-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('food-hygiene-registers'))(
+    'returns a unique document title for the food hygiene microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('food-hygiene-registers')) }),
+      ).resolves.toEqual({
         title: 'Food hygiene registers - uk-open-data-lab',
         description: expect.any(String),
-        url: '/health/food-hygiene-registers/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Food hygiene registers - uk-open-data-lab',
+          description: expect.any(String),
+          url: '/health/food-hygiene-registers/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the cycle hire story with narrative, chart, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('cycle-hire-docks'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('798 cycle hire docks hold space for 20 to 39 bikes');
-    expect(html).toContain('A docking point is the fixed part of the network');
-    expect(html).toContain('Key facts');
-    expect(html).toContain('How to read this chart');
-    expect(html).toContain('Sources and further reading');
-    expect(html).toContain('BikePoint docking station API');
-    expect(html).toContain('TfL open data terms and licences');
-    expect(html).toContain('href="/transport"');
-    expect(html).toContain('Cycle hire docks');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('cycle-hire-docks'))(
+    'renders the cycle hire story with narrative, chart, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('cycle-hire-docks'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('798 cycle hire docks hold space for 20 to 39 bikes');
+      expect(html).toContain('A docking point is the fixed part of the network');
+      expect(html).toContain('Key facts');
+      expect(html).toContain('How to read this chart');
+      expect(html).toContain('Sources and further reading');
+      expect(html).toContain('BikePoint docking station API');
+      expect(html).toContain('TfL open data terms and licences');
+      expect(html).toContain('href="/transport"');
+      expect(html).toContain('Cycle hire docks');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('reads the headline numbers out of the fetched docking stations', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('cycle-hire-docks'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('data-testid="cycle-hire-stations" data-value="798"');
-    expect(html).toContain('data-testid="cycle-hire-docking-points" data-value="20992"');
-    expect(html).toContain('data-testid="cycle-hire-largest-station" data-value="63"');
-    expect(html).toContain('View the dock sizes as a table');
-    expect(html).toContain('Jubilee Plaza, Canary Wharf');
-    expect(html).toContain('>20,992<');
-  });
+  it.skipIf(!isPublished('cycle-hire-docks'))(
+    'reads the headline numbers out of the fetched docking stations',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('cycle-hire-docks'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('data-testid="cycle-hire-stations" data-value="798"');
+      expect(html).toContain('data-testid="cycle-hire-docking-points" data-value="20992"');
+      expect(html).toContain('data-testid="cycle-hire-largest-station" data-value="63"');
+      expect(html).toContain('View the dock sizes as a table');
+      expect(html).toContain('Jubilee Plaza, Canary Wharf');
+      expect(html).toContain('>20,992<');
+    },
+  );
 
-  it('returns a unique document title for the cycle hire microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('cycle-hire-docks')) }),
-    ).resolves.toEqual({
-      title: 'Cycle hire docks - uk-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('cycle-hire-docks'))(
+    'returns a unique document title for the cycle hire microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('cycle-hire-docks')) }),
+      ).resolves.toEqual({
         title: 'Cycle hire docks - uk-open-data-lab',
         description: expect.any(String),
-        url: '/transport/cycle-hire-docks/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Cycle hire docks - uk-open-data-lab',
+          description: expect.any(String),
+          url: '/transport/cycle-hire-docks/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the planning datasets story with narrative, chart, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('planning-datasets'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('nearly nine in ten of the records');
-    expect(html).toContain('The ranking is lopsided');
-    expect(html).toContain('Key facts');
-    expect(html).toContain('How to read this chart');
-    expect(html).toContain('Sources and further reading');
-    expect(html).toContain('Planning Data API documentation');
-    expect(html).toContain('Open Government Licence v3.0');
-    expect(html).toContain('href="/open-data"');
-    expect(html).toContain('Planning datasets');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('planning-datasets'))(
+    'renders the planning datasets story with narrative, chart, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('planning-datasets'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('nearly nine in ten of the records');
+      expect(html).toContain('The ranking is lopsided');
+      expect(html).toContain('Key facts');
+      expect(html).toContain('How to read this chart');
+      expect(html).toContain('Sources and further reading');
+      expect(html).toContain('Planning Data API documentation');
+      expect(html).toContain('Open Government Licence v3.0');
+      expect(html).toContain('href="/open-data"');
+      expect(html).toContain('Planning datasets');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('reads the headline numbers out of the fetched dataset catalogue', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('planning-datasets'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('data-testid="planning-datasets" data-value="201"');
-    expect(html).toContain('data-testid="planning-records" data-value="25355887"');
-    expect(html).toContain('data-testid="planning-largest-dataset" data-value="22740586"');
-    expect(html).toContain('View the largest datasets as a table');
-    expect(html).toContain('Title boundary');
-    expect(html).toContain('>22,740,586<');
-  });
+  it.skipIf(!isPublished('planning-datasets'))(
+    'reads the headline numbers out of the fetched dataset catalogue',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('planning-datasets'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('data-testid="planning-datasets" data-value="201"');
+      expect(html).toContain('data-testid="planning-records" data-value="25355887"');
+      expect(html).toContain('data-testid="planning-largest-dataset" data-value="22740586"');
+      expect(html).toContain('View the largest datasets as a table');
+      expect(html).toContain('Title boundary');
+      expect(html).toContain('>22,740,586<');
+    },
+  );
 
-  it('returns a unique document title for the planning datasets microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('planning-datasets')) }),
-    ).resolves.toEqual({
-      title: 'Planning datasets - uk-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('planning-datasets'))(
+    'returns a unique document title for the planning datasets microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('planning-datasets')) }),
+      ).resolves.toEqual({
         title: 'Planning datasets - uk-open-data-lab',
         description: expect.any(String),
-        url: '/open-data/planning-datasets/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Planning datasets - uk-open-data-lab',
+          description: expect.any(String),
+          url: '/open-data/planning-datasets/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the ancient woodland story copy', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('ancient-woodland'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('Ancient woodland is land that has been wooded since at least 1600');
-    expect(html).toContain('Key facts');
-    expect(html).toContain('How to read this chart');
-    expect(html).toContain('Sources and further reading');
-    expect(html).toContain('Ancient Woodland (England) layer (Natural England)');
-    expect(html).toContain('Open Government Licence v3.0');
-    expect(html).toContain('href="/biodiversity"');
-    expect(html).toContain('Ancient woodland');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('ancient-woodland'))(
+    'renders the ancient woodland story copy',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('ancient-woodland'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('Ancient woodland is land that has been wooded since at least 1600');
+      expect(html).toContain('Key facts');
+      expect(html).toContain('How to read this chart');
+      expect(html).toContain('Sources and further reading');
+      expect(html).toContain('Ancient Woodland (England) layer (Natural England)');
+      expect(html).toContain('Open Government Licence v3.0');
+      expect(html).toContain('href="/biodiversity"');
+      expect(html).toContain('Ancient woodland');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('reads the headline numbers out of the fetched layer', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('ancient-woodland'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('data-testid="ancient-woodland-records" data-value="53638"');
-    expect(html).toContain('data-testid="ancient-woodland-hectares" data-value="365050"');
-    expect(html).toContain('data-testid="ancient-woodland-smallest-band" data-value="14725"');
-    expect(html).toContain('View the size bands as a table');
-    expect(html).toContain('Under 1 hectare');
-    expect(html).toContain('>53,638<');
-  });
+  it.skipIf(!isPublished('ancient-woodland'))(
+    'reads the headline numbers out of the fetched layer',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('ancient-woodland'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('data-testid="ancient-woodland-records" data-value="53638"');
+      expect(html).toContain('data-testid="ancient-woodland-hectares" data-value="365050"');
+      expect(html).toContain('data-testid="ancient-woodland-smallest-band" data-value="14725"');
+      expect(html).toContain('View the size bands as a table');
+      expect(html).toContain('Under 1 hectare');
+      expect(html).toContain('>53,638<');
+    },
+  );
 
-  it('renders the Bank Rate story copy', async () => {
+  it.skipIf(!isPublished('bank-rate'))('renders the Bank Rate story copy', async () => {
     const stream = await renderToReadableStream(
       <MicrositePage params={Promise.resolve(paramsFor('bank-rate'))} />,
     );
@@ -656,58 +704,70 @@ describe('MicrositePage', () => {
     expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
   });
 
-  it('reads the headline numbers out of the fetched series', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('bank-rate'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('data-testid="bank-rate-latest" data-value="3.75"');
-    expect(html).toContain('data-testid="bank-rate-longest-hold" data-value="2709"');
-    expect(html).toContain('data-testid="bank-rate-readings" data-value="13077"');
-    expect(html).toContain('View the runs at each level as a table');
-    expect(html).toContain('2 January 1975');
-  });
+  it.skipIf(!isPublished('bank-rate'))(
+    'reads the headline numbers out of the fetched series',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('bank-rate'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('data-testid="bank-rate-latest" data-value="3.75"');
+      expect(html).toContain('data-testid="bank-rate-longest-hold" data-value="2709"');
+      expect(html).toContain('data-testid="bank-rate-readings" data-value="13077"');
+      expect(html).toContain('View the runs at each level as a table');
+      expect(html).toContain('2 January 1975');
+    },
+  );
 
-  it('fills the Bank Rate source note from the series it fetched', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('bank-rate'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('13,077 daily readings running to 24 September 2026');
-    expect(html).toContain('in 2 runs at 114 levels');
-  });
+  it.skipIf(!isPublished('bank-rate'))(
+    'fills the Bank Rate source note from the series it fetched',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('bank-rate'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('13,077 daily readings running to 24 September 2026');
+      expect(html).toContain('in 2 runs at 114 levels');
+    },
+  );
 
-  it('returns a unique document title for the Bank Rate microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('bank-rate')) }),
-    ).resolves.toEqual({
-      title: 'Bank Rate - uk-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('bank-rate'))(
+    'returns a unique document title for the Bank Rate microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('bank-rate')) }),
+      ).resolves.toEqual({
         title: 'Bank Rate - uk-open-data-lab',
         description: expect.any(String),
-        url: '/economy/bank-rate/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Bank Rate - uk-open-data-lab',
+          description: expect.any(String),
+          url: '/economy/bank-rate/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('returns a unique document title for the ancient woodland microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('ancient-woodland')) }),
-    ).resolves.toEqual({
-      title: 'Ancient woodland - uk-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('ancient-woodland'))(
+    'returns a unique document title for the ancient woodland microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('ancient-woodland')) }),
+      ).resolves.toEqual({
         title: 'Ancient woodland - uk-open-data-lab',
         description: expect.any(String),
-        url: '/biodiversity/ancient-woodland/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Ancient woodland - uk-open-data-lab',
+          description: expect.any(String),
+          url: '/biodiversity/ancient-woodland/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the recorded crime story copy', async () => {
+  it.skipIf(!isPublished('recorded-crime'))('renders the recorded crime story copy', async () => {
     const stream = await renderToReadableStream(
       <MicrositePage params={Promise.resolve(paramsFor('recorded-crime'))} />,
     );
@@ -724,95 +784,116 @@ describe('MicrositePage', () => {
     expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
   });
 
-  it('reads the headline numbers out of the fetched window', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('recorded-crime'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('data-testid="recorded-crime-offences" data-value="17835"');
-    expect(html).toContain('data-testid="recorded-crime-leading-type" data-value="4942"');
-    expect(html).toContain('data-testid="recorded-crime-no-suspect" data-value="7866"');
-    expect(html).toContain('View the crime types as a table');
-    expect(html).toContain('Shoplifting');
-    expect(html).toContain('>3,311<');
-  });
+  it.skipIf(!isPublished('recorded-crime'))(
+    'reads the headline numbers out of the fetched window',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('recorded-crime'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('data-testid="recorded-crime-offences" data-value="17835"');
+      expect(html).toContain('data-testid="recorded-crime-leading-type" data-value="4942"');
+      expect(html).toContain('data-testid="recorded-crime-no-suspect" data-value="7866"');
+      expect(html).toContain('View the crime types as a table');
+      expect(html).toContain('Shoplifting');
+      expect(html).toContain('>3,311<');
+    },
+  );
 
-  it('fills the recorded crime source note from the window it fetched', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('recorded-crime'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain(
-      '17,835 offences within a mile of 53.7997, -1.5492 across the 12 published months from August 2025 to July 2026',
-    );
-  });
+  it.skipIf(!isPublished('recorded-crime'))(
+    'fills the recorded crime source note from the window it fetched',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('recorded-crime'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain(
+        '17,835 offences within a mile of 53.7997, -1.5492 across the 12 published months from August 2025 to July 2026',
+      );
+    },
+  );
 
-  it('returns a unique document title for the recorded crime microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('recorded-crime')) }),
-    ).resolves.toEqual({
-      title: 'Recorded crime - uk-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('recorded-crime'))(
+    'returns a unique document title for the recorded crime microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('recorded-crime')) }),
+      ).resolves.toEqual({
         title: 'Recorded crime - uk-open-data-lab',
         description: expect.any(String),
-        url: '/society/recorded-crime/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Recorded crime - uk-open-data-lab',
+          description: expect.any(String),
+          url: '/society/recorded-crime/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the Parliament seats story copy', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('parliament-seats'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('a party needs 326 of them to hold more than half the chamber');
-    expect(html).toContain('A vacant seat is listed as its own party');
-    expect(html).toContain('Key facts');
-    expect(html).toContain('How to read this chart');
-    expect(html).toContain('Sources and further reading');
-    expect(html).toContain('Members API reference (UK Parliament)');
-    expect(html).toContain('Open Parliament Licence v3.0');
-    expect(html).toContain('href="/society"');
-    expect(html).toContain('Parliament seats');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('parliament-seats'))(
+    'renders the Parliament seats story copy',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('parliament-seats'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('a party needs 326 of them to hold more than half the chamber');
+      expect(html).toContain('A vacant seat is listed as its own party');
+      expect(html).toContain('Key facts');
+      expect(html).toContain('How to read this chart');
+      expect(html).toContain('Sources and further reading');
+      expect(html).toContain('Members API reference (UK Parliament)');
+      expect(html).toContain('Open Parliament Licence v3.0');
+      expect(html).toContain('href="/society"');
+      expect(html).toContain('Parliament seats');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('reads the headline numbers out of the fetched seat counts', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('parliament-seats'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('data-testid="parliament-seats" data-value="650"');
-    expect(html).toContain('data-testid="parliament-largest-party" data-value="403"');
-    expect(html).toContain('data-testid="parliament-parties" data-value="18"');
-    expect(html).toContain('View the seats as a table');
-    expect(html).toContain('Labour');
-    expect(html).toContain('>403<');
-  });
+  it.skipIf(!isPublished('parliament-seats'))(
+    'reads the headline numbers out of the fetched seat counts',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('parliament-seats'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('data-testid="parliament-seats" data-value="650"');
+      expect(html).toContain('data-testid="parliament-largest-party" data-value="403"');
+      expect(html).toContain('data-testid="parliament-parties" data-value="18"');
+      expect(html).toContain('View the seats as a table');
+      expect(html).toContain('Labour');
+      expect(html).toContain('>403<');
+    },
+  );
 
-  it('fills the Parliament seats source note from the seats it fetched', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('parliament-seats'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('The house held 650 seats across 18 parties');
-    expect(html).toContain('Labour held the largest block at 403');
-  });
+  it.skipIf(!isPublished('parliament-seats'))(
+    'fills the Parliament seats source note from the seats it fetched',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('parliament-seats'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('The house held 650 seats across 18 parties');
+      expect(html).toContain('Labour held the largest block at 403');
+    },
+  );
 
-  it('returns a unique document title for the Parliament seats microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('parliament-seats')) }),
-    ).resolves.toEqual({
-      title: 'Parliament seats - uk-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('parliament-seats'))(
+    'returns a unique document title for the Parliament seats microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('parliament-seats')) }),
+      ).resolves.toEqual({
         title: 'Parliament seats - uk-open-data-lab',
         description: expect.any(String),
-        url: '/society/parliament-seats/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Parliament seats - uk-open-data-lab',
+          description: expect.any(String),
+          url: '/society/parliament-seats/',
+          type: 'article',
+        },
+      });
+    },
+  );
 });

@@ -2,6 +2,12 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 import { micrositePathFor, MICROSITES } from '../src/lib/microsites';
+import { PUBLISHED_MICROSITES } from '../src/lib/published-microsites';
+
+/** Skips a story test while the site shows one microsite at a time. */
+function onlyPublished(slug: string): void {
+  test.skip(!PUBLISHED_MICROSITES.includes(slug), `${slug} is not the published microsite`);
+}
 
 test.describe('home', () => {
   test('@critical renders the landing page with microsite cards', async ({ page }) => {
@@ -46,12 +52,14 @@ test.describe('home', () => {
   });
 
   test('@smoke counts the datasets in the ONS catalogue', async ({ page }) => {
+    onlyPublished('ons-dataset-catalogue');
     await page.goto('./open-data/ons-dataset-catalogue');
     const count = await page.getAttribute('[data-testid="ons-datasets"]', 'data-value');
     expect(Number(count)).toBeGreaterThan(200);
   });
 
   test('@smoke counts the docking stations in the cycle hire list', async ({ page }) => {
+    onlyPublished('cycle-hire-docks');
     await page.goto('./transport/cycle-hire-docks');
     const stations = await page.getAttribute('[data-testid="cycle-hire-stations"]', 'data-value');
     expect(Number(stations)).toBeGreaterThan(500);
@@ -63,6 +71,7 @@ test.describe('home', () => {
   });
 
   test('@smoke draws the cycle hire dot plot', async ({ page }) => {
+    onlyPublished('cycle-hire-docks');
     await page.goto('./transport/cycle-hire-docks');
     await expect(
       page.getByRole('img', { name: /docking stations by number of docking points/i }),
@@ -73,6 +82,7 @@ test.describe('home', () => {
   });
 
   test('@smoke counts the datasets in the planning catalogue', async ({ page }) => {
+    onlyPublished('planning-datasets');
     await page.goto('./open-data/planning-datasets');
     const datasets = await page.getAttribute('[data-testid="planning-datasets"]', 'data-value');
     expect(Number(datasets)).toBeGreaterThan(100);
@@ -81,6 +91,7 @@ test.describe('home', () => {
   });
 
   test('@smoke counts the establishments on the food hygiene registers', async ({ page }) => {
+    onlyPublished('food-hygiene-registers');
     await page.goto('./health/food-hygiene-registers');
     const count = await page.getAttribute(
       '[data-testid="food-hygiene-establishments"]',
@@ -90,6 +101,7 @@ test.describe('home', () => {
   });
 
   test('@smoke reads the Bank Rate series and draws its step chart', async ({ page }) => {
+    onlyPublished('bank-rate');
     await page.goto('./economy/bank-rate');
     const readings = await page.getAttribute('[data-testid="bank-rate-readings"]', 'data-value');
     expect(Number(readings)).toBeGreaterThan(10000);
@@ -105,6 +117,7 @@ test.describe('home', () => {
   });
 
   test('@smoke counts the records on the ancient woodland layer', async ({ page }) => {
+    onlyPublished('ancient-woodland');
     await page.goto('./biodiversity/ancient-woodland');
     const records = await page.getAttribute(
       '[data-testid="ancient-woodland-records"]',
@@ -122,6 +135,7 @@ test.describe('home', () => {
   });
 
   test('@smoke counts the offences recorded around Leeds city centre', async ({ page }) => {
+    onlyPublished('recorded-crime');
     await page.goto('./society/recorded-crime');
     const offences = await page.getAttribute(
       '[data-testid="recorded-crime-offences"]',
@@ -142,6 +156,7 @@ test.describe('home', () => {
   });
 
   test('@smoke reads the carbon intensity window and draws its heatmap', async ({ page }) => {
+    onlyPublished('carbon-intensity');
     await page.goto('./energy/carbon-intensity');
     const average = await page.getAttribute(
       '[data-testid="carbon-intensity-average"]',
@@ -167,6 +182,7 @@ test.describe('home', () => {
   });
 
   test('@smoke counts the seats held in the Commons', async ({ page }) => {
+    onlyPublished('parliament-seats');
     await page.goto('./society/parliament-seats');
     const seats = await page.getAttribute('[data-testid="parliament-seats"]', 'data-value');
     expect(Number(seats)).toBeGreaterThan(600);

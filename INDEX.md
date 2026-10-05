@@ -5,14 +5,15 @@ A map of this repo for anyone (or any agent) arriving cold.
 ## The site
 
 `uk-open-data-lab` is a static Next.js export of small experiments on UK public
-data. Five microsites are published. The home page is
+data. One microsite is published at a time, listed in
+`apps/web/src/lib/published-microsites.ts`. The home page is
 (`apps/web/src/app/page.tsx`), and each story lives at
 `/<category-slug>/<slug>/`.
 
 - [gauge-index](docs/experiments/gauge-index) (alive) The River Thames carries
   55 gauges, more than any other river in the sample, from the Environment
   Agency flood-monitoring API.
-- [ons-dataset-catalogue](docs/experiments/ons-dataset-catalogue) (alive) The
+- [ons-dataset-catalogue](docs/experiments/ons-dataset-catalogue) (built, not published) The
   ONS beta API lists 338 datasets, and 310 of them carry a 2023 or 2024
   last-updated stamp.
 - [food-hygiene-registers](docs/experiments/food-hygiene-registers) (alive)
