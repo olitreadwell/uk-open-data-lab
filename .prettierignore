@@ -14,3 +14,7 @@ src/generated
 
 # Large committed data snapshots; kept compact and never reformatted.
 apps/web/src/fixtures
+
+# Rewritten by the dependency-batching automation, which does not run prettier.
+# Formatting it here gets reverted on the next batch.
+scripts/dependabot-auto-merge.mjs
