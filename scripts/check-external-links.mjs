@@ -2,7 +2,7 @@
 // Enforces the template rule: every link to an external domain opens in a
 // new tab with rel="noopener noreferrer". Scans JSX/TSX source for <a> and
 // <Link> tags with external hrefs and fails when target/rel are missing.
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const rootDir = resolve(import.meta.dirname, '..');
@@ -32,7 +32,7 @@ function checkFile(file) {
     const hasNoopener = /rel=["'][^"']*noopener[^"']*["']/.test(tag);
     if (!hasTargetBlank || !hasNoopener) {
       violations.push(
-        `${file}: external link ${href[0]} needs target="_blank" and rel="noopener noreferrer"`,
+        `${file}: external link ${href[0]} needs target="_blank" and rel="noopener noreferrer"`
       );
     }
   }
