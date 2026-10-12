@@ -24,7 +24,7 @@
   "dependencies": {
     "@uk-open-data-connectors/uk-sources": "^0.1.0",
     "@uk-open-data-lab/ui": "*",
-    "next": "^16.3.8",
+    "next": "^16.4.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "recharts": "^3.10.1",
@@ -32,9 +32,6 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
-    "@uk-open-data-lab/config-eslint": "*",
-    "@uk-open-data-lab/config-tailwind": "*",
-    "@uk-open-data-lab/config-typescript": "*",
     "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@testing-library/jest-dom": "^6.6.3",
@@ -44,6 +41,9 @@
     "@types/node": "^22",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@uk-open-data-lab/config-eslint": "*",
+    "@uk-open-data-lab/config-tailwind": "*",
+    "@uk-open-data-lab/config-typescript": "*",
     "@vitejs/plugin-react": "^5.0.0",
     "@vitest/coverage-v8": "^3.0.0",
     "eslint": "^9.39.5",
